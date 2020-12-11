@@ -6,7 +6,18 @@ public class Rotate : MonoBehaviour
 {
     public float speed = 100.0f;
 
+    public enum Axis
+    {
+        x,
+        y,
+        z
+    }
+
+    public Axis axis;
+
     float rotation;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +30,17 @@ public class Rotate : MonoBehaviour
     {
         rotation += speed * Time.deltaTime;
 
-        transform.rotation = Quaternion.Euler(rotation, 0, 0);
+        if(axis == Axis.x)
+        {
+            transform.rotation = Quaternion.Euler(rotation, 0, 0);
+        }
+        else if(axis == Axis.y)
+        {
+            transform.rotation = Quaternion.Euler(0, rotation, 0);
+        }
+        else if(axis == Axis.z)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, rotation);
+        }
     }
 }
